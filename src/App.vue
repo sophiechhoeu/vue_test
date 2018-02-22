@@ -1,22 +1,44 @@
 <template>
-  <div id="app">
-    <header>
-      <span>Vue.js PWA</span>
-    </header>
-    <main>
-      <img src="./assets/logo.png" alt="Vue.js PWA">
-      <router-view></router-view>
-    </main>
-  </div>
+<div id="app">
+  <header>
+    <span>PWA VueJs</span>
+  </header>
+  <main>
+    <div class="wrapper">
+      <div class="books">
+        <book v-for="list in lists" :key="list.imageUrl" :list="list"></book>
+      </div>
+    </div>
+  </main>
+</div>
 </template>
 
 <script>
+import data from './db.json'
+import Book from './components/Book'
 export default {
-  name: 'app'
+  name: 'app',
+  data () {
+    return {
+      lists: []
+    }
+  },
+  created () {
+    this.lists = data
+  },
+  components: {
+    Book
+  }
 }
 </script>
 
 <style>
+.books {
+    column-count: 1;
+    column-gap: 1em;
+   }
+
+
 body {
   margin: 0;
 }
